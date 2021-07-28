@@ -36,7 +36,7 @@ namespace CiniLithoApp
             if(data!=null)
             {                
                 Billpage.Y_lable = data.SERALB;
-                Billpage.Recount = data.SERNO;
+                Billpage.Al_No = data.SERNO;
             }
         }
 

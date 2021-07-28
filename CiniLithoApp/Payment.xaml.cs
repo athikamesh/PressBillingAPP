@@ -21,6 +21,7 @@ namespace CiniLithoApp
     {
         CINIDBEntities Cinidb = new CINIDBEntities();
         string paymentmode = "";string mobile = ""; int sno = 0;
+        string current_year = DateTime.Now.Year.ToString();
         public Payment(string code)
         {
             InitializeComponent();
@@ -168,7 +169,7 @@ namespace CiniLithoApp
                 {
                     if(txt_orderno.Text!="")
                     {
-                        var det = Cinidb.tbl_totaldetails.Where(b => b.Billno == "CL"+txt_orderno.Text).SingleOrDefault();
+                        var det = Cinidb.tbl_totaldetails.Where(b => b.Billno == "CL"+txt_orderno.Text+"/"+ current_year).SingleOrDefault();
                         if(det!=null)
                         {
                             double tot = det.Advance + det.Payment;

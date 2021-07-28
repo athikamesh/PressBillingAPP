@@ -25,8 +25,9 @@ namespace CiniLithoApp
     {
         CINIDBEntities Cinidb = new CINIDBEntities();
         List<Billdetail> BD = new List<Billdetail>();
-         public static string Y_lable = "";
-        public static int Recount = 9000;
+        public static string Y_lable = "";
+        public static int Recount = 5;
+        public static int Al_No = 0;
         int SNO = 0;public string paymentmode = "";
         ReportDocument RPT = new ReportDocument();
         public Billpage()
@@ -119,14 +120,32 @@ namespace CiniLithoApp
             else 
             {
                 string[] arr = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
+                if (BN.Count == Recount)
+                {
+                    Al_No += 1;
+                    if (Al_No == 26)
+                    {
+                        Al_No = 0;
+                    }
+                    Y_lable = arr[Al_No];
+                    var dets = Cinidb.tbl_alfserial.SingleOrDefault();
+                    if (dets != null)
+                    {
+                        dets.SERALB = Y_lable;
+                        dets.SERNO = Al_No;
+                        Cinidb.SaveChanges();
+                    }
+                }
                 string target = Y_lable;
                 int results = Array.FindIndex(arr, s1 => s1.Equals(target));
                 if (results == -1) { results = 0; } 
                 var data = arr[results]; Y_lable = data.ToString();
                 var det = Cinidb.tbl_alfserial.SingleOrDefault();
                 if (det != null)
-                {                 
-                    det.SERALB = data.ToString();               
+                {
+                    det.SERALB = data.ToString();
+                    det.SERALB = data.ToString();
+                    det.SERNO = results;
                     Cinidb.SaveChanges();
                 }
                 else
@@ -158,7 +177,8 @@ namespace CiniLithoApp
             {
                 if (s != "" && s != null)
                 {
-                    string TR = s.Remove(0, 3);
+                    string[] M = s.Split('/');
+                    string TR = M[0].Remove(0, 3);
                     int BNO = Convert.ToInt32(TR) + 1;
                     s = "CL"+Y_lable + BNO+"/"+DateTime.Now.Year.ToString();
                 }
