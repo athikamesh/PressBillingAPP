@@ -1,0 +1,175 @@
+﻿<Page x:Class="CiniLithoApp.DailyExpence"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:CiniLithoApp"
+        mc:Ignorable="d"
+        Title="Daily Expence" Background="White">
+    <Grid Margin="5,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="130"></ColumnDefinition>
+            <ColumnDefinition Width="230"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="0"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>           
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Grid.ColumnSpan="2"  VerticalAlignment="Center" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <RadioButton x:Name="EXP" Content="Expence" Grid.Column="0" FontWeight="SemiBold" FontSize="18" VerticalContentAlignment="Center" Checked="EXP_Checked" IsChecked="True"></RadioButton>
+            <RadioButton x:Name="EMP"  Content="Employee" Grid.Column="1" FontWeight="SemiBold" FontSize="18" VerticalContentAlignment="Center" Checked="EMP_Checked"></RadioButton>
+            <RadioButton x:Name="OTH" Content="Others" Grid.Column="2" FontWeight="SemiBold" FontSize="18" VerticalContentAlignment="Center" Checked="OTH_Checked"></RadioButton>
+        </Grid>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Expence Id" VerticalAlignment="Center" FontSize="18" FontWeight="SemiBold" ></TextBlock>
+        <TextBlock  Grid.Row="2" Grid.Column="0" Text="Expence Detail" VerticalAlignment="Center"  FontSize="18" FontWeight="SemiBold" ></TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Employee" VerticalAlignment="Center" FontSize="18" FontWeight="SemiBold" ></TextBlock>
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="Amount" VerticalAlignment="Center" FontSize="18" FontWeight="SemiBold" ></TextBlock>
+       
+        <TextBlock Grid.Row="5" Grid.Column="0" Text="Date" VerticalAlignment="Center" FontSize="18" FontWeight="SemiBold" ></TextBlock>
+
+        <TextBox Grid.Row="1"  x:Name="txt_expno" Grid.Column="1" Text="" VerticalContentAlignment="Center" FontSize="20" IsEnabled="False"  Height="45" CharacterCasing="Upper"></TextBox>
+        <TextBox Grid.Row="2"  x:Name="txt_expname" Grid.Column="1" Text="" VerticalContentAlignment="Center" FontSize="20" Height="45"></TextBox>
+        <ComboBox Grid.Row="3"  x:Name="txt_expemployee" Grid.Column="1" VerticalContentAlignment="Center" FontSize="20" Height="45" Width="188" HorizontalAlignment="Left" Text="Select"></ComboBox>
+        <Button  Grid.Row="3" x:Name="btn_addemp" Grid.Column="1" Height="40" Width="35" HorizontalAlignment="Right" Style="{StaticResource ImageButtonStyle}" Background="{StaticResource BaseColor}" Click="btn_addemp_Click" Margin="0,0,5,0" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition ></RowDefinition>
+                </Grid.RowDefinitions>            
+                        <Path Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" Fill="Black" />     
+            </Grid>
+          
+        </Button>
+        <TextBox Grid.Row="4"  x:Name="txt_expamount" Grid.Column="1"  Text="0" VerticalContentAlignment="Center" FontSize="20"  Height="45"  PreviewTextInput="allowinteger"></TextBox>
+       <DatePicker Grid.Row="5"  x:Name="txt_expdate" Grid.Column="1" VerticalContentAlignment="Center" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="20" SelectedDateFormat="Short"  Style="{StaticResource MaterialDesignFloatingHintDatePicker}" IsEnabled="False"></DatePicker>
+
+        <Grid Grid.Row="6" Grid.ColumnSpan="2" Height="50" Width="300" VerticalAlignment="Top" Margin="0,10,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="BTN_SAVE" Grid.Column="0" Content="Save" Margin="2,0" Background="Green" Click="BTN_SAVE_Click" FontWeight="SemiBold" Height="50" ></Button>
+            <Button x:Name="BTN_CANCEL" Grid.Column="1" Content="Cancel" Margin="2,0" Background="Red" Click="BTN_CANCEL_Click" FontWeight="SemiBold" Height="50"></Button>
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>              
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <ComboBox Grid.Row="3"  x:Name="txt_exp_employee" Grid.Column="0" VerticalContentAlignment="Center" FontSize="20" Height="45" Width="188" HorizontalAlignment="Left" material:HintAssist.Hint="Select" Visibility="Collapsed" PreviewMouseDown="txt_exp_employee_PreviewMouseDown" SelectionChanged="txt_exp_employee_SelectionChanged"></ComboBox>
+            <TextBox x:Name="txt_Search" Grid.Row="1" Grid.Column="0" Margin="2" FontSize="18" VerticalContentAlignment="Center"  PreviewKeyDown="frombill_PreviewKeyDown"  Background="White" material:HintAssist.Hint="Search" Height="40" ></TextBox>
+            <DatePicker x:Name="fromdate" Grid.Row="1" Grid.Column="1" FontSize="20" Margin="2" SelectedDateChanged="fromdate_SelectedDateChanged" Background="White" material:HintAssist.Hint="From Date" ></DatePicker>
+            <DatePicker x:Name="todate" Grid.Row="1" Grid.Column="2" FontSize="20" Margin="2" SelectedDateChanged="todate_SelectedDateChanged"  Background="White" material:HintAssist.Hint="To Date" ></DatePicker>
+            <Button x:Name="BTN_PRINT" Grid.Column="3" Content="Print" Margin="5,5" Background="Green" Click="BTN_PRINT_Click" FontWeight="SemiBold" Height="40" Visibility="Collapsed" ></Button>
+        </Grid>
+        <DataGrid x:Name="Searchgrid" Grid.Column="2" Grid.Row="1" Grid.RowSpan="6" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AlternatingRowBackground="{DynamicResource AlternateColor}"  AutoGenerateColumns="False"  EnableRowVirtualization="True"  GridLinesVisibility="None" Background="White" IsReadOnly="True" SelectionChanged="Searchgrid_SelectionChanged" FontSize="18" Margin="5,0,0,0" >
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
+                    <Setter Property="Foreground" Value="{StaticResource PrimaryFont}" />
+                    <Setter Property="HorizontalContentAlignment" Value="Left" />
+                    <Setter Property="Height" Value="35"/>
+                    <Setter Property="FontSize" Value="14"></Setter>
+                    <Setter Property="FontWeight" Value="Normal"/>
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+
+            <DataGrid.RowHeaderStyle>
+                <Style TargetType="{x:Type DataGridRowHeader}">
+                    <Setter Property="Width" Value="0"></Setter>
+                    <Setter Property="FontWeight"  Value="Bold"></Setter>
+                </Style>
+            </DataGrid.RowHeaderStyle>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="item_noColumn" Binding="{Binding ExpNo}" Width="0" CanUserResize="False" >
+                    <DataGridTextColumn.Header>
+                        <TextBlock Text=""/>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>              
+                <DataGridTextColumn x:Name="item_ColorColumn" Binding="{Binding ExpDet}"  Width="150" CanUserResize="False">
+                    <DataGridTextColumn.Header>
+                        <TextBlock Text=" Exp detail"/>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridTextColumn x:Name="item_CopiesColumn" Binding="{Binding Emp}"  Width="150" CanUserResize="False">
+                    <DataGridTextColumn.Header>
+                        <TextBlock Text=" Employee"/>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridTextColumn x:Name="item_RateColumn" Binding="{Binding Amount}"  Width="150" CanUserResize="False">
+                    <DataGridTextColumn.Header>
+                        <TextBlock Text=" Amount"/>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridTextColumn x:Name="item_typeColumn" Binding="{Binding ExpType}"  Width="100" CanUserResize="False">
+                    <DataGridTextColumn.Header>
+                        <TextBlock Text=" Type"/>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridTextColumn x:Name="item_AmountColumn" Binding="{Binding ExpDate,StringFormat=dd-MM-yyyy}"  Width="120" CanUserResize="False">
+                    <DataGridTextColumn.Header>
+                        <TextBlock Text=" Date"/>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridTemplateColumn Width="65" >
+                    <DataGridTemplateColumn.Header>
+                        <TextBlock Text="Delete"/>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <!--PreviewMouseLeftButtonUp="GridDelet_Click"-->
+                            <Button x:Name="defbtn" Width="26" Style="{DynamicResource ImageButtonStyle}" Click="defbtn_Click">
+                                <Path  Data="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z"
+                                      StrokeThickness="60"  Stretch="Uniform" Fill="#FF3D90E2" Width="20" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" Height="20">
+                                </Path>
+                            </Button>
+
+
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Grid Grid.Row="8" Grid.Column="2" HorizontalAlignment="Right">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition Width="150"></ColumnDefinition>
+                <ColumnDefinition Width="150"></ColumnDefinition>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                
+            </Grid.RowDefinitions>
+            <TextBlock  Text="Debit" Grid.Row="0" Grid.Column="0" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold"></TextBlock>
+            <TextBlock x:Name="TotalAmt" Text="000" Grid.Row="0" Grid.Column="1" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
+            <TextBlock  Text="Credit" Grid.Row="0" Grid.Column="2" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold"></TextBlock>
+            <TextBlock x:Name="TotalAdv" Text="000" Grid.Row="0" Grid.Column="3" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
+
+
+
+        </Grid>
+
+
+    </Grid>
+</Page>

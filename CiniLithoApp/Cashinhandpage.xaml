@@ -1,0 +1,120 @@
+﻿<Page x:Class="CiniLithoApp.Cashinhandpage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+       xmlns:pn="clr-namespace:CiniLithoApp.PaginationControl"
+      Title="Cashinhandpage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="360"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+               
+                <RowDefinition Height="*"></RowDefinition>
+              
+            </Grid.RowDefinitions>
+          
+            <ScrollViewer x:Name="SearchGridScroll" Grid.Column="0" Grid.Row="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"  VerticalAlignment="Top" PreviewMouseWheel="SearchGridScroll_PreviewMouseWheel"  >
+                <DataGrid x:Name="Searchgrid"  VerticalAlignment="Stretch" Grid.Row="1" AlternatingRowBackground="{DynamicResource AlternateColor}" AutoGenerateColumns="False"  EnableRowVirtualization="True" RowDetailsVisibilityMode="VisibleWhenSelected" GridLinesVisibility="None" Background="{DynamicResource DefaultWhite}" IsReadOnly="True" >
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
+                            <Setter Property="Foreground" Value="{StaticResource PrimaryFont}" />
+                            <Setter Property="HorizontalContentAlignment" Value="Left" />
+                            <Setter Property="Height" Value="35"/>
+                            <Setter Property="FontSize" Value="14"></Setter>
+                            <Setter Property="FontWeight" Value="Normal"/>
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+
+                    <DataGrid.RowHeaderStyle>
+                        <Style TargetType="{x:Type DataGridRowHeader}">
+                            <Setter Property="Width" Value="0"></Setter>
+                            <Setter Property="FontWeight"  Value="Bold"></Setter>
+                        </Style>
+                    </DataGrid.RowHeaderStyle>
+                    <DataGrid.RowStyle>
+                        <Style   TargetType="{x:Type DataGridRow}">
+                            <Setter   Property="FontSize" Value="14"/>
+                        </Style>
+
+                    </DataGrid.RowStyle>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn x:Name="Product_billno" Binding="{Binding Rno}"  Width="100" CanUserResize="False">
+
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="Bill No"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn x:Name="Product_nameColumn" Binding="{Binding Rname}"  Width="250" CanUserResize="False">
+
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="Name"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn x:Name="Product_amountColumn" Binding="{Binding paydet}"  Width="150">
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="Amount"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn x:Name="Product_modeColumn" Binding="{Binding mode}"  Width="100">
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="Mode"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn x:Name="Product_refColumn" Binding="{Binding BankRef}"  Width="100">
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="Reference"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </ScrollViewer>
+         
+        </Grid>
+        <Grid Grid.Column="1" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="60"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+               
+                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="250"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Total Amount" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Select Date" VerticalAlignment="Center"></TextBlock>
+            
+
+
+            <TextBox x:Name="txt_totamt" Grid.Row="0" Grid.Column="2" Height="40" FontSize="20" IsEnabled="False" VerticalContentAlignment="Center"></TextBox>
+            <DatePicker x:Name="txt_datepicker" Grid.Row="1" Grid.Column="2" Height="40" FontSize="20" SelectedDateChanged="txt_datepicker_SelectedDateChanged" IsTodayHighlighted="False" Background="White"></DatePicker>
+          
+
+            <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    
+                </Grid.ColumnDefinitions>
+                <RadioButton x:Name="exRBT_Cash" Content="CASH" Grid.Column="0" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" FontWeight="SemiBold" Checked="RBT_Cash_Checked" IsChecked="True"></RadioButton>
+                <RadioButton x:Name="exRBT_BANK" Content="BANK" Grid.Column="1" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" FontWeight="SemiBold" Checked="RBT_BANK_Checked"></RadioButton>
+              
+            </Grid>
+
+            <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Button x:Name="btn_exsubmit" Height="40" FontSize="20"  Width="150" Background="Green" Margin="2" Content="Print" Click="btn_exsubmit_Click"></Button>
+               
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

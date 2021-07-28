@@ -1,0 +1,4 @@
+﻿<Canvas x:Class="CiniLithoApp.AutoComplete.AutoCompleteTextBox"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Height="50" Focusable="True">
+</Canvas>

@@ -1,0 +1,45 @@
+﻿<Window x:Class="CiniLithoApp.LoginFrm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CiniLithoApp"
+        mc:Ignorable="d"
+        Title="LoginFrm" WindowStyle="None" WindowState="Maximized" Background="SkyBlue">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="200"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="350"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Image Grid.Column="1" Source="bin/Debug/Image/logotrans.png" Width="156" Height="156" VerticalAlignment="Bottom"></Image>
+        <Grid Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="80"></RowDefinition>
+                
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>              
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Username" FontSize="20" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0"></TextBlock>
+            <TextBlock Text="Password" FontSize="20" VerticalAlignment="Center" Grid.Column="0" Grid.Row="1"></TextBlock>
+
+            <TextBox x:Name="cmb_username" FontSize="18" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0" Height="40" Background="White">
+              
+            </TextBox>
+            <PasswordBox x:Name="txt_password" FontSize="18" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" Height="40" VerticalContentAlignment="Center" KeyDown="txt_password_KeyDown" Background="White"></PasswordBox>
+            <StackPanel Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="50">
+            <Button x:Name="BTN_SAVE" Grid.Column="0" Grid.Row="2" Content="Login" Margin="2" Background="Green" Click="BTN_SAVE_Click" FontWeight="SemiBold" Width="150" Height="45" FontSize="16"></Button>
+                <Button x:Name="BTN_CANCEL" Grid.Column="1" Grid.Row="2" Content="Close" Margin="2" Background="Red" Click="BTN_CANCEL_Click" FontWeight="SemiBold" Width="150" Height="45" FontSize="16"></Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

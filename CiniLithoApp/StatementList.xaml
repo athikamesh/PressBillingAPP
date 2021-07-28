@@ -1,0 +1,255 @@
+﻿<Page x:Class="CiniLithoApp.StatementList"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+     xmlns:pn="clr-namespace:CiniLithoApp.PaginationControl"
+        xmlns:auto="clr-namespace:CiniLithoApp.AutoComplete"
+	Title="StatementList" Background="SkyBlue">
+    <Page.Resources>
+        <ContextMenu  x:Key="cntx_prod_menu">
+
+            <MenuItem  x:Name="ctx_down_prod" Header="Export" Click="ctx_down_prod_Click" FontSize="18">
+                <MenuItem.Icon >
+                    <ContentControl Template="{StaticResource DownIcon}" />
+                </MenuItem.Icon>
+            </MenuItem>
+
+            <MenuItem  x:Name="ctx_down_Order" Header="Export Order" Click="ctx_down_order_Click" FontSize="18">
+                <MenuItem.Icon >
+                    <ContentControl Template="{StaticResource DownIcon}" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem  x:Name="ctx_down_party" Header="Export Party Order" Click="ctx_down_prod_Click1" FontSize="18">
+                <MenuItem.Icon >
+                    <ContentControl Template="{StaticResource DownIcon}" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem  x:Name="ctx_print_all" Header="Print" Click="ctx_print_all_Click"  FontSize="18">
+                <MenuItem.Icon >
+                    <ContentControl Template="{StaticResource PrintIcon}" />
+                </MenuItem.Icon>
+            </MenuItem>
+
+            
+        </ContextMenu>
+        <Style x:Key="ButtonTemplate" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{DynamicResource BaseColor}" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Width" Value="80" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border CornerRadius="5" Background="{TemplateBinding Background}"
+							BorderThickness="1">
+                            <ContentPresenter x:Name="cnt" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="{DynamicResource BaseColor}" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" HorizontalAlignment="Right">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Party Name" Grid.Row="0" Grid.Column="0" FontSize="18" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="From Date" Grid.Row="0" Grid.Column="1" FontSize="18" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="To Date" Grid.Row="0" Grid.Column="2" FontSize="18" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="From Bill No" Grid.Row="0" Grid.Column="3" FontSize="18" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="To Bill No" Grid.Row="0" Grid.Column="4" FontSize="18" VerticalAlignment="Center"></TextBlock>
+
+            <auto:AutoCompleteTextBox  x:Name="txt_customername" Grid.Column="0"  Grid.Row="1"  Margin="0,0,2,0"  Height="35" Width="auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  LostKeyboardFocus="txt_customername_LostKeyboardFocus" KeyDown="txt_customername_KeyDown"  Threshold="2" Focusable="True"/>
+            <DatePicker x:Name="fromdate" Grid.Row="1" Grid.Column="1" FontSize="20" Margin="2" SelectedDateChanged="fromdate_SelectedDateChanged" Background="White"></DatePicker>
+            <DatePicker x:Name="todate" Grid.Row="1" Grid.Column="2" FontSize="20" Margin="2" SelectedDateChanged="todate_SelectedDateChanged"  Background="White"></DatePicker>
+            <TextBox x:Name="frombill" Grid.Row="1" Grid.Column="3" Margin="2" FontSize="18" VerticalContentAlignment="Center"  PreviewKeyDown="frombill_PreviewKeyDown"  Background="White"></TextBox>
+            <TextBox x:Name="tobill" Grid.Row="1" Grid.Column="4" Margin="2" FontSize="18" VerticalContentAlignment="Center" PreviewKeyDown="tobill_PreviewKeyDown"  Background="White"></TextBox>
+
+        </Grid>
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Stretch">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <CheckBox Grid.Row="1" Grid.Column="0" Content="Balance Only" x:Name="BalCheck" Click="BalCheck_Click" Margin="2" HorizontalAlignment="Right"></CheckBox>
+                <!--<pn:HeaderPagination x:Name="GridFilter" VerticalAlignment="Center" Grid.Column="0"></pn:HeaderPagination>-->
+                <Button x:Name="Btn_option" Grid.Column="1" Margin="10,0,10,0" VerticalAlignment="Center" MinWidth="20" Height="40" Style="{StaticResource ButtonTemplate}" Click="Btn_option_Click" Focusable="False" >
+                    <StackPanel Orientation="Horizontal">
+                        <Path Width="20" Height="20" Margin="0,0" Stretch="Fill"  Data="F1 M 21,36L 25,36L 25,40L 21,40L 21,36 Z M 19,23L 27,23L 27,31L 19,31L 19,23 Z M 19,34L 27,34L 27,42L 19,42L 19,34 Z M 31,23L 57,23L 57,31L 31,31L 31,23 Z M 19,45L 27,45L 27,53L 19,53L 19,45 Z M 31,34L 57,34L 57,42L 31,42L 31,34 Z M 31,45L 57,45L 57,53L 31,53L 31,45 Z M 20,35L 20,41L 26,41L 26,35L 20,35 Z "   Fill="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" />
+                    </StackPanel>
+                </Button>
+            </Grid>
+
+        </StackPanel>
+        <ScrollViewer x:Name="SearchGridScroll" Grid.Column="0" Grid.Row="2" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"  VerticalAlignment="Top" PreviewMouseWheel="SearchGridScroll_PreviewMouseWheel"  >
+            <DataGrid VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.IsContainerVirtualizable="True" VirtualizingPanel.VirtualizationMode="Recycling" x:Name="Searchgrid"  VerticalAlignment="Stretch" Grid.Row="1" AlternatingRowBackground="{DynamicResource AlternateColor}" AutoGenerateColumns="False"  EnableRowVirtualization="True" RowDetailsVisibilityMode="VisibleWhenSelected" GridLinesVisibility="None" Background="{DynamicResource DefaultWhite}" IsReadOnly="True" SelectionChanged="Searchgrid_SelectionChanged" MouseDoubleClick="Searchgrid_MouseDoubleClick" >
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
+                        <Setter Property="Foreground" Value="{StaticResource PrimaryFont}" />
+                        <Setter Property="HorizontalContentAlignment" Value="Left" />
+                        <Setter Property="Height" Value="35"/>
+                        <Setter Property="FontSize" Value="14"></Setter>
+                        <Setter Property="FontWeight" Value="Normal"/>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+
+                <DataGrid.RowHeaderStyle>
+                    <Style TargetType="{x:Type DataGridRowHeader}">
+                        <Setter Property="Width" Value="0"></Setter>
+                        <Setter Property="FontWeight"  Value="Bold"></Setter>
+                    </Style>
+                </DataGrid.RowHeaderStyle>
+                <DataGrid.RowStyle>
+                    <Style   TargetType="{x:Type DataGridRow}">
+                        <Setter   Property="FontSize" Value="14"/>
+                    </Style>
+
+                </DataGrid.RowStyle>
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="Product_codeColumn" Binding="{Binding sno}"  Width="50" CanUserResize="False">
+
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="SNO"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn x:Name="Product_artidColumn" Binding="{Binding orderdate,StringFormat=dd-MM-yyyy}"  Width="100">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="OrderDate"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn x:Name="Product_nameColumn" Binding="{Binding name}" Width="150">
+
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Name"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+
+                    <!--<DataGridTextColumn x:Name="Product_lnameColumn" Binding="{Binding Product_Name_Arabic}" Width="200">
+                    <DataGridTextColumn.Header>
+                        <TextBlock Text="{DynamicResource alternatename}"/>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>-->
+
+                    <DataGridTextColumn x:Name="Product_typeColumn" Binding="{Binding billno}"  Width="100">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Billno"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn x:Name="Product_brandColumn" Binding="{Binding detailcolor}"  Width="100">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Detail-Color "/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn x:Name="Product_stockColumn" Binding="{Binding copies}"  Width="60">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Copies"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn x:Name="Product_unitColumn" Binding="{Binding rate}"  Width="80">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Rate"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn x:Name="Product_advanceColumn" Binding="{Binding advance}"  Width="120">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Advance"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn x:Name="Product_paymentColumn" Binding="{Binding payment}"  Width="120">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Payment"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn x:Name="Product_balanceColumn" Binding="{Binding balance}"  Width="100">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Balance"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn x:Name="Product_totalColumn" Binding="{Binding total}"  Width="100">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Total"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+
+                    <!--<DataGridTextColumn x:Name="Product_priceColumn" Binding="{Binding Product_Product_Price}" Header="Price" Width="100"/>-->
+                    <!--<DataGridTextColumn x:Name="Product_discColumn" Visibility="Hidden" Binding="{Binding Product_Discount}"  Width="100">
+                    <DataGridTextColumn.Header>
+                        <TextBlock Text="{DynamicResource discount}"/>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>-->
+
+                    <!--<DataGridTextColumn x:Name="Product_refrColumn" Binding="{Binding Product_Ref}"  Width="100">
+                    <DataGridTextColumn.Header>
+                        <TextBlock Text="{DynamicResource referance}"/>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>-->
+                    <DataGridTemplateColumn  Width="40" >
+                        <DataGridTemplateColumn.Header>
+                            <TextBlock Text="Lock"/>
+                        </DataGridTemplateColumn.Header>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <!--PreviewMouseLeftButtonUp="GridDelet_Click"-->
+                                <CheckBox x:Name="chk_pro_status"  PreviewMouseLeftButtonUp="chk_Status_Click" IsChecked="{Binding Path=Status,Mode=OneWay}"  />
+                                <!--<Canvas   x:Name="appbar_close" Width="17" Height="17" Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0"  >
+                                <Path Width="16" Height="16" Canvas.Left=".5" Canvas.Top=".5" Stretch="Fill" Fill="#FF125ECD" Data="F1 M 26.9166,22.1667L 37.9999,33.25L 49.0832,22.1668L 53.8332,26.9168L 42.7499,38L 53.8332,49.0834L 49.0833,53.8334L 37.9999,42.75L 26.9166,53.8334L 22.1666,49.0833L 33.25,38L 22.1667,26.9167L 26.9166,22.1667 Z "/>
+                            </Canvas>-->
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <!--<DataGridTemplateColumn Width="60" >
+                        <DataGridTemplateColumn.Header>
+                            <TextBlock Text="{DynamicResource delete}"/>
+                        </DataGridTemplateColumn.Header>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                -->
+                    <!--PreviewMouseLeftButtonUp="GridDelet_Click"-->
+                    <!--
+                                <Button x:Name="defbtn" Width="26" Style="{DynamicResource ImageButtonStyle}" Click="defbtn_Click">
+                                    <Path  Data="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z"
+                                      StrokeThickness="60"  Stretch="Uniform" Fill="#FF3D90E2" Width="20" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" Height="20">
+                                    </Path>
+                                </Button>
+
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>-->
+
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+        <StackPanel Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Stretch">
+            <pn:FooterPagination x:Name="Pagination" Margin="5,0,5,0"></pn:FooterPagination>
+        </StackPanel>
+    </Grid>
+</Page>

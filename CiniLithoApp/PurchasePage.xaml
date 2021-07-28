@@ -1,0 +1,229 @@
+﻿<Page x:Class="CiniLithoApp.PurchasePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CiniLithoApp"
+        xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:auto="clr-namespace:CiniLithoApp.AutoComplete"
+      mc:Ignorable="d"      
+      Title="PurchasePage" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="140"></ColumnDefinition>
+            <ColumnDefinition Width="250"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+           
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>            
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>            
+            <RowDefinition Height="*"></RowDefinition>
+            
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Company Name" VerticalAlignment="Center" FontSize="18" FontWeight="SemiBold" ></TextBlock>
+         <TextBlock Grid.Row="2" Grid.Column="0" Text="Product Detail" VerticalAlignment="Center" FontSize="18" FontWeight="SemiBold" ></TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="HNS" VerticalAlignment="Center" FontSize="18" FontWeight="SemiBold" ></TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Bill No" VerticalAlignment="Center" FontSize="18" FontWeight="SemiBold" ></TextBlock>
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="Amount" VerticalAlignment="Center" FontSize="18" FontWeight="SemiBold" ></TextBlock>
+        <TextBlock Grid.Row="6" Grid.Column="0" Text="CGST" VerticalAlignment="Center" FontSize="18" FontWeight="SemiBold" ></TextBlock>
+        <TextBlock Grid.Row="7" Grid.Column="0" Text="SGST" VerticalAlignment="Center" FontSize="18" FontWeight="SemiBold" ></TextBlock>
+        <TextBlock Grid.Row="8" Grid.Column="0" Text="Total" VerticalAlignment="Center" FontSize="18" FontWeight="SemiBold" ></TextBlock>
+       
+        <TextBlock Grid.Row="9" Grid.Column="0" Text="Payment Mode" VerticalAlignment="Center" FontSize="18" FontWeight="SemiBold" ></TextBlock>
+        <TextBlock Grid.Row="10" Grid.Column="0" Text="Payment Date" VerticalAlignment="Center" FontSize="18" FontWeight="SemiBold" ></TextBlock>
+        <TextBlock Grid.Row="5" Grid.Column="0" Text="Purchase Date" VerticalAlignment="Center" FontSize="18" FontWeight="SemiBold" ></TextBlock>
+        <Grid Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="2" Height="50" VerticalAlignment="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="BTN_SAVE" Grid.Column="0" Content="Save" Margin="2,0" Background="Green" Click="BTN_SAVE_Click" FontWeight="SemiBold" Height="50"></Button>
+            <Button x:Name="BTN_CANCEL" Grid.Column="1" Content="Cancel" Margin="2,0" Background="Red" Click="BTN_CANCEL_Click" FontWeight="SemiBold" Height="50"></Button>
+        </Grid>
+        
+        <ComboBox Grid.Row="0"  x:Name="txt_companyname" Grid.Column="1" Text="" VerticalContentAlignment="Center" FontSize="20" Height="45" Width="200" HorizontalAlignment="Left"  Background="White" SelectionChanged="txt_companyname_SelectionChanged"></ComboBox>
+        <Button  Grid.Row="0" x:Name="btn_addemp" Grid.Column="1" Height="40" Width="35" HorizontalAlignment="Right" Style="{StaticResource ImageButtonStyle}" Background="{StaticResource BaseColor}" Click="btn_addsup_Click" Margin="0,0,5,0" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition ></RowDefinition>
+                </Grid.RowDefinitions>
+                <Path Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" Fill="Black" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="2" />
+            </Grid>
+
+        </Button>
+        <TextBox Grid.Row="2"  x:Name="txt_nproductdetail" Grid.Column="1" Text="" VerticalContentAlignment="Center" FontSize="20" Height="45" Background="White"></TextBox>
+        <TextBox Grid.Row="1"  x:Name="txt_HNS" Grid.Column="1" VerticalContentAlignment="Center" FontSize="20"  Height="45" Background="White"></TextBox>
+        <TextBox Grid.Row="3"  x:Name="txt_Billno" Grid.Column="1"  VerticalContentAlignment="Center" FontSize="20" Height="45" Background="White" PreviewKeyDown="txt_Billno_PreviewKeyDown"></TextBox>
+        <TextBox Grid.Row="4"  x:Name="txt_amount" Grid.Column="1"  VerticalContentAlignment="Center" FontSize="20" Height="45" PreviewTextInput="allowinteger" Background="White" TextChanged="txt_amount_TextChanged"></TextBox>
+        <TextBox Grid.Row="6"  x:Name="txt_cgst" Grid.Column="1"   VerticalContentAlignment="Center" FontSize="20"  Height="45" PreviewTextInput="allowinteger" Background="White" TextChanged="txt_cgst_TextChanged"></TextBox>
+        <TextBox Grid.Row="7"  x:Name="txt_sgst" Grid.Column="1"   Text="" VerticalContentAlignment="Top" FontSize="20"  Height="45" PreviewTextInput="allowinteger" Background="White" TextChanged="txt_sgst_TextChanged"></TextBox>
+        <TextBox Grid.Row="8"  x:Name="txt_total" Grid.Column="1"   Text="" VerticalContentAlignment="Top" FontSize="20" Height="45" IsReadOnly="False" Background="White"></TextBox>
+        <DatePicker Grid.Row="5"  x:Name="txt_purchasedate" Grid.Column="1" VerticalContentAlignment="Center" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="20" SelectedDateFormat="Short" Background="White" Margin="0,0,2,0" ></DatePicker>
+        <DatePicker Grid.Row="10"  x:Name="txt_paymentdate" Grid.Column="1" VerticalContentAlignment="Center" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="20" SelectedDateFormat="Short" Background="White" Margin="0,0,2,0" ></DatePicker>
+        <StackPanel Grid.Row="9" Grid.Column="1"  Orientation="Horizontal">
+            <RadioButton x:Name="RBT_Cash" Content="CASH" Grid.Column="0" VerticalContentAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold" Checked="RBT_Cash_Checked" FontSize="16" GotFocus="RBT_Cash_GotFocus" ></RadioButton>
+            <RadioButton x:Name="RBT_SBI" Content="SBI" Grid.Column="1" VerticalContentAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold" Checked="RBT_SBI_Checked" FontSize="16" GotFocus="RBT_SBI_GotFocus"></RadioButton>
+            <RadioButton x:Name="RBT_TMB" Content="TMB" Grid.Column="2" VerticalContentAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold" Checked="RBT_TMB_Checked" FontSize="16" GotFocus="RBT_TMB_GotFocus"></RadioButton>
+        </StackPanel>
+
+        <Grid Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+              
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <auto:AutoCompleteTextBox  x:Name="txt_search" Grid.Row="0" Grid.Column="0"  Margin="0,0,0,0"  Height="35"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" KeyDown="txt_search_KeyDown" Threshold="2" Focusable="True" material:HintAssist.Hint="SellerName" />
+            <DatePicker x:Name="fromdate" Grid.Row="0" Grid.Column="1" FontSize="20" Margin="2" SelectedDateChanged="fromdate_SelectedDateChanged" Background="White" material:HintAssist.Hint="From Date" ></DatePicker>
+            <DatePicker x:Name="todate" Grid.Row="0" Grid.Column="2" FontSize="20" Margin="2" SelectedDateChanged="todate_SelectedDateChanged"  Background="White" material:HintAssist.Hint="To Date" ></DatePicker>
+            <Button x:Name="btn_refresh" Content="Refresh" Grid.Column="3" Margin="2" Click="btn_refresh_Click" Height="40"></Button>
+            <Button x:Name="btn_print" Content="Print" Grid.Column="4" Margin="2" Click="btn_print_Click" Height="40" Visibility="Collapsed"></Button>
+        </Grid>
+        <ScrollViewer x:Name="SearchGridScroll" Grid.Column="2" Grid.Row="1" Grid.RowSpan="11" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"  VerticalAlignment="Stretch" PreviewMouseWheel="SearchGridScroll_PreviewMouseWheel"  >
+            <DataGrid VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.IsContainerVirtualizable="True" VirtualizingPanel.VirtualizationMode="Recycling" x:Name="Searchgrid"  VerticalAlignment="Stretch" Grid.Row="1" AlternatingRowBackground="{DynamicResource AlternateColor}" AutoGenerateColumns="False"  EnableRowVirtualization="True" RowDetailsVisibilityMode="VisibleWhenSelected" GridLinesVisibility="None" Background="{DynamicResource DefaultWhite}" IsReadOnly="True" MouseDoubleClick="Searchgrid_MouseDoubleClick" >
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
+                        <Setter Property="Foreground" Value="{StaticResource PrimaryFont}" />
+                        <Setter Property="HorizontalContentAlignment" Value="Left" />
+                        <Setter Property="Height" Value="35"/>
+                        <Setter Property="FontSize" Value="14"></Setter>
+                        <Setter Property="FontWeight" Value="Normal"/>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+
+                <DataGrid.RowHeaderStyle>
+                    <Style TargetType="{x:Type DataGridRowHeader}">
+                        <Setter Property="Width" Value="0"></Setter>
+                        <Setter Property="FontWeight"  Value="Bold"></Setter>
+                    </Style>
+                </DataGrid.RowHeaderStyle>
+                <DataGrid.RowStyle>
+                    <Style   TargetType="{x:Type DataGridRow}">
+                        <Setter   Property="FontSize" Value="12"/>
+                    </Style>
+
+                </DataGrid.RowStyle>
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="Product_codeColumn" Binding="{Binding sno}"  Width="80" CanUserResize="False">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="SNO"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn x:Name="Product_artidColumn" Binding="{Binding Purchase_date,StringFormat=dd-MM-yyyy}"  Width="100">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Purchase Date"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn x:Name="Product_nameColumn" Binding="{Binding Company_Name}" Width="150">
+
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Company Name"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn x:Name="Product_lnameColumn" Binding="{Binding Product_Detail}" Width="200">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Product Detail"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn x:Name="Product_typeColumn" Binding="{Binding HNS_No}"  Width="100">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="HNS No"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn x:Name="Product_brandColumn" Binding="{Binding Bill_no}"  Width="100">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Bill No"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn x:Name="Product_stockColumn" Binding="{Binding amount}"  Width="100">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Amount"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn x:Name="Product_unitColumn" Binding="{Binding cgst}"  Width="100">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="CGST"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn x:Name="Product_advanceColumn" Binding="{Binding sgst}"  Width="100">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="SGST"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn x:Name="Product_modeColumn" Binding="{Binding PaymentMode}"  Width="100">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Mode"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                   
+                    <DataGridTextColumn x:Name="Product_paymentColumn" Binding="{Binding Total_Amount}"  Width="100">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Total Amount"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTemplateColumn Width="65" >
+                        <DataGridTemplateColumn.Header>
+                            <TextBlock Text="Delete"/>
+                        </DataGridTemplateColumn.Header>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <!--PreviewMouseLeftButtonUp="GridDelet_Click"-->
+                                <Button x:Name="defbtn" Width="26" Style="{DynamicResource ImageButtonStyle}" Click="defbtn_Click">
+                                    <Path  Data="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z"
+                                      StrokeThickness="60"  Stretch="Uniform" Fill="#FF3D90E2" Width="20" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" Height="20">
+                                    </Path>
+                                </Button>
+
+
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+        <Grid Grid.Row="12" Grid.Column="2"  HorizontalAlignment="Right" VerticalAlignment="Bottom" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Total" Grid.Row="1" Grid.Column="0" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center" ></TextBlock>
+            <TextBlock  Text="Amount" Grid.Row="0" Grid.Column="1" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center"></TextBlock>
+            <TextBlock  Text="CGST" Grid.Row="0" Grid.Column="2" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center"></TextBlock>
+            <TextBlock  Text="SGST" Grid.Row="0" Grid.Column="3" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center"></TextBlock>
+            <TextBlock  Text="Total" Grid.Row="0" Grid.Column="4" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center"></TextBlock>
+            <TextBlock x:Name="amt" Text="000" Grid.Row="1" Grid.Column="1" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center"></TextBlock>
+            <TextBlock x:Name="cgsttax" Text="000" Grid.Row="1" Grid.Column="2" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center"></TextBlock>
+            <TextBlock x:Name="sgsttax" Text="000" Grid.Row="1" Grid.Column="3" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center"></TextBlock>
+            <TextBlock x:Name="totalamt" Text="000" Grid.Row="1" Grid.Column="4" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center"></TextBlock>
+        </Grid>
+    </Grid>
+</Page>

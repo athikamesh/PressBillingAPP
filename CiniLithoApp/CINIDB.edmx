@@ -1,0 +1,1134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="billingdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_alfserial">
+          <Key>
+            <PropertyRef Name="SRNO" />
+          </Key>
+          <Property Name="SRNO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SERNO" Type="int" Nullable="false" />
+          <Property Name="SERALB" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_billdetails">
+          <Key>
+            <PropertyRef Name="Sno" />
+          </Key>
+          <Property Name="Sno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Billno" Type="varchar" MaxLength="50" />
+          <Property Name="Size" Type="varchar" MaxLength="50" />
+          <Property Name="Color" Type="varchar" MaxLength="50" />
+          <Property Name="Copies" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Rate" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="M_state" Type="int" />
+          <Property Name="SCST" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CGST" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="GSTState" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_customer">
+          <Key>
+            <PropertyRef Name="Sno" />
+          </Key>
+          <Property Name="Sno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cname" Type="varchar" MaxLength="50" />
+          <Property Name="address" Type="varchar(max)" />
+          <Property Name="cphone" Type="varchar" MaxLength="20" />
+          <Property Name="advance" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="mode" Type="varchar" MaxLength="50" />
+          <Property Name="cdate" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tbl_Employee">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Emp_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Emp_Mobile" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_expence">
+          <Key>
+            <PropertyRef Name="sno" />
+          </Key>
+          <Property Name="sno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Exp_No" Type="varchar" MaxLength="500" />
+          <Property Name="Exp_Detail" Type="varchar" MaxLength="500" />
+          <Property Name="Exp_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Exp_Amount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Exp_Advance" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Exp_date" Type="datetime" />
+          <Property Name="Exp_Type" Type="varchar" MaxLength="50" />
+          <Property Name="CR_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_logdetail">
+          <Key>
+            <PropertyRef Name="Sno" />
+          </Key>
+          <Property Name="Sno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Rno" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Rname" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Rmobile" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Orderdet" Type="varchar(max)" Nullable="false" />
+          <Property Name="paydet" Type="varchar(max)" Nullable="false" />
+          <Property Name="mode" Type="varchar(max)" Nullable="false" />
+          <Property Name="datim" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="BankRef" Type="text" />
+        </EntityType>
+        <EntityType Name="tbl_newbill">
+          <Key>
+            <PropertyRef Name="Billno" />
+          </Key>
+          <Property Name="Billno" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Sno" Type="int" Nullable="false" />
+          <Property Name="Address" Type="varchar(max)" Nullable="false" />
+          <Property Name="Mobile" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="orderdate" Type="date" Nullable="false" />
+          <Property Name="deliverydate" Type="date" Nullable="false" />
+          <Property Name="rmark" Type="varchar(max)" Nullable="false" />
+          <Property Name="GSTSTAT" Type="varchar" MaxLength="50" />
+          <Property Name="M_Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="YLabel" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_officeuse">
+          <Key>
+            <PropertyRef Name="sno" />
+          </Key>
+          <Property Name="sno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="uname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="pword" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="pin" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="cname" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="emailid" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_purchase">
+          <Key>
+            <PropertyRef Name="Sno" />
+          </Key>
+          <Property Name="Sno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="500" />
+          <Property Name="ProductDetail" Type="varchar" MaxLength="500" />
+          <Property Name="HNSNo" Type="varchar" MaxLength="500" />
+          <Property Name="Billno" Type="varchar" MaxLength="500" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CGST" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SGST" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="TotalAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Purchasedate" Type="date" />
+          <Property Name="PaymentMode" Type="varchar" MaxLength="50" />
+          <Property Name="Paymentdate" Type="date" />
+        </EntityType>
+        <EntityType Name="tbl_Supplier">
+          <Key>
+            <PropertyRef Name="Sno" />
+          </Key>
+          <Property Name="Sno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CPName" Type="varchar" MaxLength="500" />
+          <Property Name="HSNCode" Type="varchar" MaxLength="100" />
+          <Property Name="Address" Type="text" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" />
+          <Property Name="Mobile" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="text" />
+        </EntityType>
+        <EntityType Name="tbl_totaldetails">
+          <Key>
+            <PropertyRef Name="Billno" />
+          </Key>
+          <Property Name="Billno" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Total" Type="float" Nullable="false" />
+          <Property Name="Advance" Type="float" Nullable="false" />
+          <Property Name="Payment" Type="float" Nullable="false" />
+          <Property Name="Balance" Type="float" Nullable="false" />
+          <Property Name="Discount" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="PDate" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Adate" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Pmode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SGST" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CGST" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="BankRef" Type="text" />
+        </EntityType>
+        <EntityType Name="tmp_billdet">
+          <Key>
+            <PropertyRef Name="Sno" />
+          </Key>
+          <Property Name="Sno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Size" Type="varchar" MaxLength="50" />
+          <Property Name="Color" Type="varchar" MaxLength="50" />
+          <Property Name="Copies" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Rate" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="total" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="SGST" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="CGST" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="CDate" Type="datetime" />
+          <Property Name="TGst" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'billingdb.dbo.Balance_List' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Balance_List">
+          <Key>
+            <PropertyRef Name="Billno" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="orderdate" />
+            <PropertyRef Name="Advance" />
+            <PropertyRef Name="Payment" />
+            <PropertyRef Name="Balance" />
+            <PropertyRef Name="Total" />
+            <PropertyRef Name="Adate" />
+            <PropertyRef Name="Pmode" />
+            <PropertyRef Name="Mobile" />
+            <PropertyRef Name="PDate" />
+          </Key>
+          <Property Name="Billno" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="orderdate" Type="date" Nullable="false" />
+          <Property Name="Advance" Type="float" Nullable="false" />
+          <Property Name="Payment" Type="float" Nullable="false" />
+          <Property Name="Balance" Type="float" Nullable="false" />
+          <Property Name="Total" Type="float" Nullable="false" />
+          <Property Name="Adate" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Pmode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Color" Type="varchar" MaxLength="50" />
+          <Property Name="Copies" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Rate" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Expr1" Type="varchar" MaxLength="50" />
+          <Property Name="Size" Type="varchar" MaxLength="50" />
+          <Property Name="M_Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mobile" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="PDate" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Function Name="BillPrint" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="BillNo" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SearchBillNo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FromBillNo" Type="varchar" Mode="In" />
+          <Parameter Name="ToBillNo" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SearchDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FromDate" Type="varchar" Mode="In" />
+          <Parameter Name="Todate" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SearchMonth" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Month" Type="int" Mode="In" />
+          <Parameter Name="Year" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SearchPart" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SortOrder" Type="nvarchar" Mode="In" />
+          <Parameter Name="PartName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SearchPartDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SortOrder" Type="nvarchar" Mode="In" />
+          <Parameter Name="PartName" Type="nvarchar" Mode="In" />
+          <Parameter Name="FromDate" Type="varchar" Mode="In" />
+          <Parameter Name="Todate" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SearchPartWithBalance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SortOrder" Type="nvarchar" Mode="In" />
+          <Parameter Name="PartName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Baln" Type="float" Mode="In" />
+        </Function>
+        <Function Name="USP_SEL_Contacts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SortOrder" Type="nvarchar" Mode="In" />
+          <Parameter Name="PageNo" Type="int" Mode="In" />
+          <Parameter Name="PageSize" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="billingdbModelStoreContainer">
+          <EntitySet Name="tbl_alfserial" EntityType="Self.tbl_alfserial" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_billdetails" EntityType="Self.tbl_billdetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_customer" EntityType="Self.tbl_customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Employee" EntityType="Self.tbl_Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_expence" EntityType="Self.tbl_expence" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_logdetail" EntityType="Self.tbl_logdetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_newbill" EntityType="Self.tbl_newbill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_officeuse" EntityType="Self.tbl_officeuse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_purchase" EntityType="Self.tbl_purchase" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Supplier" EntityType="Self.tbl_Supplier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_totaldetails" EntityType="Self.tbl_totaldetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tmp_billdet" EntityType="Self.tmp_billdet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Balance_List" EntityType="Self.Balance_List" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Balance_List].[Billno] AS [Billno], 
+    [Balance_List].[Name] AS [Name], 
+    [Balance_List].[orderdate] AS [orderdate], 
+    [Balance_List].[Advance] AS [Advance], 
+    [Balance_List].[Payment] AS [Payment], 
+    [Balance_List].[Balance] AS [Balance], 
+    [Balance_List].[Total] AS [Total], 
+    [Balance_List].[Adate] AS [Adate], 
+    [Balance_List].[Pmode] AS [Pmode], 
+    [Balance_List].[Color] AS [Color], 
+    [Balance_List].[Copies] AS [Copies], 
+    [Balance_List].[Rate] AS [Rate], 
+    [Balance_List].[Expr1] AS [Expr1], 
+    [Balance_List].[Size] AS [Size], 
+    [Balance_List].[M_Status] AS [M_Status], 
+    [Balance_List].[Mobile] AS [Mobile], 
+    [Balance_List].[PDate] AS [PDate]
+    FROM [dbo].[Balance_List] AS [Balance_List]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="billingdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbl_alfserial">
+          <Key>
+            <PropertyRef Name="SRNO" />
+          </Key>
+          <Property Name="SRNO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SERNO" Type="Int32" Nullable="false" />
+          <Property Name="SERALB" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_customer">
+          <Key>
+            <PropertyRef Name="Sno" />
+          </Key>
+          <Property Name="Sno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="cphone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="advance" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="mode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cdate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_officeuse">
+          <Key>
+            <PropertyRef Name="sno" />
+          </Key>
+          <Property Name="sno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="uname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cname" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="emailid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tmp_billdet">
+          <Key>
+            <PropertyRef Name="Sno" />
+          </Key>
+          <Property Name="Sno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Size" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Copies" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Rate" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="total" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="SGST" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="CGST" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="CDate" Type="DateTime" Precision="3" />
+          <Property Name="TGst" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Balance_List">
+          <Key>
+            <PropertyRef Name="Billno" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="orderdate" />
+            <PropertyRef Name="Advance" />
+            <PropertyRef Name="Payment" />
+            <PropertyRef Name="Balance" />
+            <PropertyRef Name="Total" />
+            <PropertyRef Name="Adate" />
+            <PropertyRef Name="Pmode" />
+            <PropertyRef Name="Mobile" />
+            <PropertyRef Name="PDate" />
+          </Key>
+          <Property Name="Billno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="orderdate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Advance" Type="Double" Nullable="false" />
+          <Property Name="Payment" Type="Double" Nullable="false" />
+          <Property Name="Balance" Type="Double" Nullable="false" />
+          <Property Name="Total" Type="Double" Nullable="false" />
+          <Property Name="Adate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Pmode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Copies" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Rate" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Expr1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Size" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="M_Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PDate" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="CINIDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_alfserial" EntityType="Self.tbl_alfserial" />
+          <EntitySet Name="tbl_customer" EntityType="Self.tbl_customer" />
+          <EntitySet Name="tbl_officeuse" EntityType="Self.tbl_officeuse" />
+          <EntitySet Name="tmp_billdet" EntityType="Self.tmp_billdet" />
+          <EntitySet Name="Balance_List" EntityType="Self.Balance_List" />
+          <EntitySet Name="tbl_logdetail" EntityType="billingdbModel.tbl_logdetail" />
+          <EntitySet Name="tbl_billdetails" EntityType="billingdbModel.tbl_billdetails" />
+          <EntitySet Name="tbl_totaldetails" EntityType="billingdbModel.tbl_totaldetails" />
+          <FunctionImport Name="BillPrint1" ReturnType="Collection(billingdbModel.BillPrint1_Result)">
+          <Parameter Name="BillNo" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="tbl_newbill" EntityType="billingdbModel.tbl_newbill" />
+          <EntitySet Name="tbl_expence" EntityType="billingdbModel.tbl_expence" />
+          <FunctionImport Name="SearchBillNo" ReturnType="Collection(billingdbModel.SearchBillNo_Result)">
+            <Parameter Name="FromBillNo" Mode="In" Type="String" />
+            <Parameter Name="ToBillNo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SearchDate" ReturnType="Collection(billingdbModel.SearchDate_Result)">
+            <Parameter Name="FromDate" Mode="In" Type="String" />
+            <Parameter Name="Todate" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SearchMonth" ReturnType="Collection(billingdbModel.SearchMonth_Result)">
+            <Parameter Name="Month" Mode="In" Type="Int32" />
+            <Parameter Name="Year" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="tbl_purchase" EntityType="billingdbModel.tbl_purchase" />
+          <EntitySet Name="tbl_Employee" EntityType="billingdbModel.tbl_Employee" />
+          <FunctionImport Name="USP_SEL_Contacts" ReturnType="Collection(billingdbModel.USP_SEL_Contacts_Result)">
+            <Parameter Name="SortOrder" Mode="In" Type="String" />
+            <Parameter Name="PageNo" Mode="In" Type="Int32" />
+            <Parameter Name="PageSize" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SearchPart" ReturnType="Collection(billingdbModel.SearchPart_Result)">
+            <Parameter Name="SortOrder" Mode="In" Type="String" />
+            <Parameter Name="PartName" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="tbl_Supplier" EntityType="billingdbModel.tbl_Supplier" />
+          <FunctionImport Name="SearchPartDate" ReturnType="Collection(billingdbModel.SearchPartDate_Result)">
+            <Parameter Name="SortOrder" Mode="In" Type="String" />
+            <Parameter Name="PartName" Mode="In" Type="String" />
+            <Parameter Name="FromDate" Mode="In" Type="String" />
+            <Parameter Name="Todate" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SearchPartWithBalance" ReturnType="Collection(billingdbModel.SearchPartWithBalance_Result)">
+            <Parameter Name="SortOrder" Mode="In" Type="String" />
+            <Parameter Name="PartName" Mode="In" Type="String" />
+            <Parameter Name="Baln" Mode="In" Type="Double" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="tbl_logdetail">
+          <Key>
+            <PropertyRef Name="Sno" />
+          </Key>
+          <Property Name="Sno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Rno" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Rname" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Rmobile" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Orderdet" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="paydet" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="mode" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="datim" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="BankRef" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="BillPrint_Result">
+          <Property Type="String" Name="Billno" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Sno" Nullable="false" />
+          <Property Type="String" Name="Size" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Color" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Copies" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Rate" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="SGST" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="CGST" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Double" Name="Total" Nullable="false" />
+          <Property Type="String" Name="address" Nullable="true" />
+          <Property Type="String" Name="cphone" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="BillPrint_Result1">
+          <Property Type="String" Name="Billno" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="orderdate" Nullable="false" />
+          <Property Type="DateTime" Name="deliverydate" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Sno" Nullable="false" />
+          <Property Type="String" Name="Size" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Color" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Copies" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Rate" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="SGST" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="CGST" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Double" Name="Total" Nullable="false" />
+          <Property Type="String" Name="address" Nullable="true" />
+          <Property Type="String" Name="cphone" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <EntityType Name="tbl_billdetails">
+          <Key>
+            <PropertyRef Name="Sno" />
+          </Key>
+          <Property Name="Sno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Billno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Size" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Copies" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Rate" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="M_state" Type="Int32" />
+          <Property Name="SCST" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CGST" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="GSTState" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_totaldetails">
+          <Key>
+            <PropertyRef Name="Billno" />
+          </Key>
+          <Property Name="Billno" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Total" Type="Double" Nullable="false" />
+          <Property Name="Advance" Type="Double" Nullable="false" />
+          <Property Name="Payment" Type="Double" Nullable="false" />
+          <Property Name="Balance" Type="Double" Nullable="false" />
+          <Property Name="Discount" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PDate" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Adate" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Pmode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SGST" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CGST" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="BankRef" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="BillPrint_Result2">
+          <Property Type="String" Name="Billno" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="orderdate" Nullable="false" />
+          <Property Type="DateTime" Name="deliverydate" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Sno" Nullable="false" />
+          <Property Type="String" Name="Size" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Color" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Copies" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Rate" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="SGST" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="PSgct" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="PCgst" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="CGST" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Double" Name="Total" Nullable="false" />
+          <Property Type="String" Name="address" Nullable="true" />
+          <Property Type="String" Name="cphone" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="BillPrint1_Result">
+          <Property Type="String" Name="Billno" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="orderdate" Nullable="false" />
+          <Property Type="DateTime" Name="deliverydate" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Sno" Nullable="false" />
+          <Property Type="String" Name="Size" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Color" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Copies" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Rate" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="SGST" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="PSgct" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="PCgst" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="CGST" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Double" Name="Total" Nullable="false" />
+          <Property Type="String" Name="address" Nullable="false" />
+          <Property Type="String" Name="Mobile" Nullable="false" MaxLength="20" />
+        </ComplexType>
+        <EntityType Name="tbl_newbill">
+          <Key>
+            <PropertyRef Name="Billno" />
+          </Key>
+          <Property Name="Billno" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sno" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Mobile" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="orderdate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="deliverydate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="rmark" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="GSTSTAT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="M_Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="YLabel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_expence">
+          <Key>
+            <PropertyRef Name="sno" />
+          </Key>
+          <Property Name="sno" Type="Int32" Nullable="false" />
+          <Property Name="Exp_No" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Exp_Detail" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Exp_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Exp_Amount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Exp_Advance" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Exp_date" Type="DateTime" Precision="3" />
+          <Property Name="CR_date" Type="DateTime" Precision="3" />
+          <Property Name="Exp_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="SearchBillNo_Result">
+          <Property Type="String" Name="Billno" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="orderdate" Nullable="false" />
+          <Property Type="Double" Name="Advance" Nullable="false" />
+          <Property Type="Double" Name="Payment" Nullable="false" />
+          <Property Type="Double" Name="Balance" Nullable="false" />
+          <Property Type="Double" Name="Total" Nullable="false" />
+          <Property Type="String" Name="Adate" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Pmode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Color" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Copies" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Rate" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Expr1" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Size" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="M_Status" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Mobile" Nullable="false" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="SearchDate_Result">
+          <Property Type="String" Name="Billno" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="orderdate" Nullable="false" />
+          <Property Type="Double" Name="Advance" Nullable="false" />
+          <Property Type="Double" Name="Payment" Nullable="false" />
+          <Property Type="Double" Name="Balance" Nullable="false" />
+          <Property Type="Double" Name="Total" Nullable="false" />
+          <Property Type="String" Name="Adate" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Pmode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Color" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Copies" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Rate" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Expr1" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Size" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="M_Status" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Mobile" Nullable="false" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="SearchMonth_Result">
+          <Property Type="String" Name="Billno" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="orderdate" Nullable="false" />
+          <Property Type="Double" Name="Advance" Nullable="false" />
+          <Property Type="Double" Name="Payment" Nullable="false" />
+          <Property Type="Double" Name="Balance" Nullable="false" />
+          <Property Type="Double" Name="Total" Nullable="false" />
+          <Property Type="String" Name="Adate" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Pmode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Color" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Copies" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Rate" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Expr1" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Size" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="M_Status" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Mobile" Nullable="false" MaxLength="20" />
+        </ComplexType>
+        <EntityType Name="tbl_purchase">
+          <Key>
+            <PropertyRef Name="Sno" />
+          </Key>
+          <Property Name="Sno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ProductDetail" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="HNSNo" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Billno" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CGST" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SGST" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TotalAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Purchasedate" Type="DateTime" Precision="0" />
+          <Property Name="PaymentMode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Paymentdate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="tbl_Employee">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Emp_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Emp_Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="USP_SEL_Contacts_Result">
+          <Property Type="Int32" Name="TotalCount" Nullable="true" />
+          <Property Type="Int64" Name="ROWNUM" Nullable="true" />
+          <Property Type="String" Name="Billno" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="orderdate" Nullable="false" />
+          <Property Type="Double" Name="Advance" Nullable="false" />
+          <Property Type="Double" Name="Payment" Nullable="false" />
+          <Property Type="Double" Name="Balance" Nullable="false" />
+          <Property Type="Double" Name="Total" Nullable="false" />
+          <Property Type="String" Name="Adate" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Pmode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Color" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Copies" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Rate" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Expr1" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Size" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="M_Status" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Mobile" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="PDate" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="SearchPart_Result">
+          <Property Type="Int32" Name="TotalCount" Nullable="true" />
+          <Property Type="Int64" Name="ROWNUM" Nullable="true" />
+          <Property Type="String" Name="Billno" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="orderdate" Nullable="false" />
+          <Property Type="Double" Name="Advance" Nullable="false" />
+          <Property Type="Double" Name="Payment" Nullable="false" />
+          <Property Type="Double" Name="Balance" Nullable="false" />
+          <Property Type="Double" Name="Total" Nullable="false" />
+          <Property Type="String" Name="Adate" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Pmode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Color" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Copies" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Rate" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Expr1" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Size" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="M_Status" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Mobile" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="PDate" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <EntityType Name="tbl_Supplier">
+          <Key>
+            <PropertyRef Name="Sno" />
+          </Key>
+          <Property Name="Sno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CPName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="HSNCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="SearchPartDate_Result">
+          <Property Type="Int32" Name="TotalCount" Nullable="true" />
+          <Property Type="Int64" Name="ROWNUM" Nullable="true" />
+          <Property Type="String" Name="Billno" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="orderdate" Nullable="false" />
+          <Property Type="Double" Name="Advance" Nullable="false" />
+          <Property Type="Double" Name="Payment" Nullable="false" />
+          <Property Type="Double" Name="Balance" Nullable="false" />
+          <Property Type="Double" Name="Total" Nullable="false" />
+          <Property Type="String" Name="Adate" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Pmode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Color" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Copies" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Rate" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Expr1" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Size" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="M_Status" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Mobile" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="PDate" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="SearchPartWithBalance_Result">
+          <Property Type="Int32" Name="TotalCount" Nullable="true" />
+          <Property Type="Int64" Name="ROWNUM" Nullable="true" />
+          <Property Type="String" Name="Billno" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="orderdate" Nullable="false" />
+          <Property Type="Double" Name="Advance" Nullable="false" />
+          <Property Type="Double" Name="Payment" Nullable="false" />
+          <Property Type="Double" Name="Balance" Nullable="false" />
+          <Property Type="Double" Name="Total" Nullable="false" />
+          <Property Type="String" Name="Adate" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Pmode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Color" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Copies" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Rate" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Expr1" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Size" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="M_Status" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Mobile" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="PDate" Nullable="false" MaxLength="100" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="billingdbModelStoreContainer" CdmEntityContainer="CINIDBEntities">
+          <EntitySetMapping Name="tbl_alfserial">
+            <EntityTypeMapping TypeName="billingdbModel.tbl_alfserial">
+              <MappingFragment StoreEntitySet="tbl_alfserial">
+                <ScalarProperty Name="SERALB" ColumnName="SERALB" />
+                <ScalarProperty Name="SRNO" ColumnName="SRNO" />
+                <ScalarProperty Name="SERNO" ColumnName="SERNO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_customer">
+            <EntityTypeMapping TypeName="billingdbModel.tbl_customer">
+              <MappingFragment StoreEntitySet="tbl_customer">
+                <ScalarProperty Name="Sno" ColumnName="Sno" />
+                <ScalarProperty Name="Cname" ColumnName="Cname" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="cphone" ColumnName="cphone" />
+                <ScalarProperty Name="advance" ColumnName="advance" />
+                <ScalarProperty Name="mode" ColumnName="mode" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_officeuse">
+            <EntityTypeMapping TypeName="billingdbModel.tbl_officeuse">
+              <MappingFragment StoreEntitySet="tbl_officeuse">
+                <ScalarProperty Name="sno" ColumnName="sno" />
+                <ScalarProperty Name="uname" ColumnName="uname" />
+                <ScalarProperty Name="pword" ColumnName="pword" />
+                <ScalarProperty Name="pin" ColumnName="pin" />
+                <ScalarProperty Name="cname" ColumnName="cname" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="emailid" ColumnName="emailid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tmp_billdet">
+            <EntityTypeMapping TypeName="billingdbModel.tmp_billdet">
+              <MappingFragment StoreEntitySet="tmp_billdet">
+                <ScalarProperty Name="Sno" ColumnName="Sno" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Copies" ColumnName="Copies" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="SGST" ColumnName="SGST" />
+                <ScalarProperty Name="CGST" ColumnName="CGST" />
+                <ScalarProperty Name="CDate" ColumnName="CDate" />
+                <ScalarProperty Name="TGst" ColumnName="TGst" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Balance_List">
+            <EntityTypeMapping TypeName="billingdbModel.Balance_List">
+              <MappingFragment StoreEntitySet="Balance_List">
+                <ScalarProperty Name="PDate" ColumnName="PDate" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="M_Status" ColumnName="M_Status" />
+                <ScalarProperty Name="Billno" ColumnName="Billno" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="orderdate" ColumnName="orderdate" />
+                <ScalarProperty Name="Advance" ColumnName="Advance" />
+                <ScalarProperty Name="Payment" ColumnName="Payment" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Adate" ColumnName="Adate" />
+                <ScalarProperty Name="Pmode" ColumnName="Pmode" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Copies" ColumnName="Copies" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_logdetail">
+            <EntityTypeMapping TypeName="billingdbModel.tbl_logdetail">
+              <MappingFragment StoreEntitySet="tbl_logdetail">
+                <ScalarProperty Name="BankRef" ColumnName="BankRef" />
+                <ScalarProperty Name="datim" ColumnName="datim" />
+                <ScalarProperty Name="mode" ColumnName="mode" />
+                <ScalarProperty Name="paydet" ColumnName="paydet" />
+                <ScalarProperty Name="Orderdet" ColumnName="Orderdet" />
+                <ScalarProperty Name="Rmobile" ColumnName="Rmobile" />
+                <ScalarProperty Name="Rname" ColumnName="Rname" />
+                <ScalarProperty Name="Rno" ColumnName="Rno" />
+                <ScalarProperty Name="Sno" ColumnName="Sno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_billdetails">
+            <EntityTypeMapping TypeName="billingdbModel.tbl_billdetails">
+              <MappingFragment StoreEntitySet="tbl_billdetails">
+                <ScalarProperty Name="GSTState" ColumnName="GSTState" />
+                <ScalarProperty Name="CGST" ColumnName="CGST" />
+                <ScalarProperty Name="SCST" ColumnName="SCST" />
+                <ScalarProperty Name="M_state" ColumnName="M_state" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Copies" ColumnName="Copies" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="Billno" ColumnName="Billno" />
+                <ScalarProperty Name="Sno" ColumnName="Sno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_totaldetails">
+            <EntityTypeMapping TypeName="billingdbModel.tbl_totaldetails">
+              <MappingFragment StoreEntitySet="tbl_totaldetails">
+                <ScalarProperty Name="BankRef" ColumnName="BankRef" />
+                <ScalarProperty Name="CGST" ColumnName="CGST" />
+                <ScalarProperty Name="SGST" ColumnName="SGST" />
+                <ScalarProperty Name="Pmode" ColumnName="Pmode" />
+                <ScalarProperty Name="Adate" ColumnName="Adate" />
+                <ScalarProperty Name="PDate" ColumnName="PDate" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="Payment" ColumnName="Payment" />
+                <ScalarProperty Name="Advance" ColumnName="Advance" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Billno" ColumnName="Billno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="BillPrint1" FunctionName="billingdbModel.Store.BillPrint">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="billingdbModel.BillPrint1_Result">
+                <ScalarProperty Name="Billno" ColumnName="Billno" />
+                <ScalarProperty Name="orderdate" ColumnName="orderdate" />
+                <ScalarProperty Name="deliverydate" ColumnName="deliverydate" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Sno" ColumnName="Sno" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Copies" ColumnName="Copies" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="SGST" ColumnName="SGST" />
+                <ScalarProperty Name="PSgct" ColumnName="PSgct" />
+                <ScalarProperty Name="PCgst" ColumnName="PCgst" />
+                <ScalarProperty Name="CGST" ColumnName="CGST" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="tbl_newbill">
+            <EntityTypeMapping TypeName="billingdbModel.tbl_newbill">
+              <MappingFragment StoreEntitySet="tbl_newbill">
+                <ScalarProperty Name="YLabel" ColumnName="YLabel" />
+                <ScalarProperty Name="M_Status" ColumnName="M_Status" />
+                <ScalarProperty Name="GSTSTAT" ColumnName="GSTSTAT" />
+                <ScalarProperty Name="rmark" ColumnName="rmark" />
+                <ScalarProperty Name="deliverydate" ColumnName="deliverydate" />
+                <ScalarProperty Name="orderdate" ColumnName="orderdate" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Sno" ColumnName="Sno" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Billno" ColumnName="Billno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_expence">
+            <EntityTypeMapping TypeName="billingdbModel.tbl_expence">
+              <MappingFragment StoreEntitySet="tbl_expence">
+                <ScalarProperty Name="Exp_Type" ColumnName="Exp_Type" />
+                <ScalarProperty Name="CR_date" ColumnName="CR_date" />
+                <ScalarProperty Name="Exp_date" ColumnName="Exp_date" />
+                <ScalarProperty Name="Exp_Advance" ColumnName="Exp_Advance" />
+                <ScalarProperty Name="Exp_Amount" ColumnName="Exp_Amount" />
+                <ScalarProperty Name="Exp_Name" ColumnName="Exp_Name" />
+                <ScalarProperty Name="Exp_Detail" ColumnName="Exp_Detail" />
+                <ScalarProperty Name="Exp_No" ColumnName="Exp_No" />
+                <ScalarProperty Name="sno" ColumnName="sno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SearchBillNo" FunctionName="billingdbModel.Store.SearchBillNo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="billingdbModel.SearchBillNo_Result">
+                <ScalarProperty Name="Billno" ColumnName="Billno" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="orderdate" ColumnName="orderdate" />
+                <ScalarProperty Name="Advance" ColumnName="Advance" />
+                <ScalarProperty Name="Payment" ColumnName="Payment" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Adate" ColumnName="Adate" />
+                <ScalarProperty Name="Pmode" ColumnName="Pmode" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Copies" ColumnName="Copies" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="M_Status" ColumnName="M_Status" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SearchDate" FunctionName="billingdbModel.Store.SearchDate">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="billingdbModel.SearchDate_Result">
+                <ScalarProperty Name="Billno" ColumnName="Billno" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="orderdate" ColumnName="orderdate" />
+                <ScalarProperty Name="Advance" ColumnName="Advance" />
+                <ScalarProperty Name="Payment" ColumnName="Payment" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Adate" ColumnName="Adate" />
+                <ScalarProperty Name="Pmode" ColumnName="Pmode" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Copies" ColumnName="Copies" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="M_Status" ColumnName="M_Status" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SearchMonth" FunctionName="billingdbModel.Store.SearchMonth">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="billingdbModel.SearchMonth_Result">
+                <ScalarProperty Name="Billno" ColumnName="Billno" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="orderdate" ColumnName="orderdate" />
+                <ScalarProperty Name="Advance" ColumnName="Advance" />
+                <ScalarProperty Name="Payment" ColumnName="Payment" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Adate" ColumnName="Adate" />
+                <ScalarProperty Name="Pmode" ColumnName="Pmode" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Copies" ColumnName="Copies" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="M_Status" ColumnName="M_Status" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="tbl_purchase">
+            <EntityTypeMapping TypeName="billingdbModel.tbl_purchase">
+              <MappingFragment StoreEntitySet="tbl_purchase">
+                <ScalarProperty Name="Paymentdate" ColumnName="Paymentdate" />
+                <ScalarProperty Name="PaymentMode" ColumnName="PaymentMode" />
+                <ScalarProperty Name="Purchasedate" ColumnName="Purchasedate" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="SGST" ColumnName="SGST" />
+                <ScalarProperty Name="CGST" ColumnName="CGST" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Billno" ColumnName="Billno" />
+                <ScalarProperty Name="HNSNo" ColumnName="HNSNo" />
+                <ScalarProperty Name="ProductDetail" ColumnName="ProductDetail" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Sno" ColumnName="Sno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Employee">
+            <EntityTypeMapping TypeName="billingdbModel.tbl_Employee">
+              <MappingFragment StoreEntitySet="tbl_Employee">
+                <ScalarProperty Name="Emp_Mobile" ColumnName="Emp_Mobile" />
+                <ScalarProperty Name="Emp_Name" ColumnName="Emp_Name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="USP_SEL_Contacts" FunctionName="billingdbModel.Store.USP_SEL_Contacts">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="billingdbModel.USP_SEL_Contacts_Result">
+                <ScalarProperty Name="TotalCount" ColumnName="TotalCount" />
+                <ScalarProperty Name="ROWNUM" ColumnName="ROWNUM" />
+                <ScalarProperty Name="Billno" ColumnName="Billno" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="orderdate" ColumnName="orderdate" />
+                <ScalarProperty Name="Advance" ColumnName="Advance" />
+                <ScalarProperty Name="Payment" ColumnName="Payment" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Adate" ColumnName="Adate" />
+                <ScalarProperty Name="Pmode" ColumnName="Pmode" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Copies" ColumnName="Copies" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="M_Status" ColumnName="M_Status" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="PDate" ColumnName="PDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SearchPart" FunctionName="billingdbModel.Store.SearchPart">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="billingdbModel.SearchPart_Result">
+                <ScalarProperty Name="TotalCount" ColumnName="TotalCount" />
+                <ScalarProperty Name="ROWNUM" ColumnName="ROWNUM" />
+                <ScalarProperty Name="Billno" ColumnName="Billno" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="orderdate" ColumnName="orderdate" />
+                <ScalarProperty Name="Advance" ColumnName="Advance" />
+                <ScalarProperty Name="Payment" ColumnName="Payment" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Adate" ColumnName="Adate" />
+                <ScalarProperty Name="Pmode" ColumnName="Pmode" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Copies" ColumnName="Copies" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="M_Status" ColumnName="M_Status" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="PDate" ColumnName="PDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="tbl_Supplier">
+            <EntityTypeMapping TypeName="billingdbModel.tbl_Supplier">
+              <MappingFragment StoreEntitySet="tbl_Supplier">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="HSNCode" ColumnName="HSNCode" />
+                <ScalarProperty Name="CPName" ColumnName="CPName" />
+                <ScalarProperty Name="Sno" ColumnName="Sno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SearchPartDate" FunctionName="billingdbModel.Store.SearchPartDate">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="billingdbModel.SearchPartDate_Result">
+                <ScalarProperty Name="TotalCount" ColumnName="TotalCount" />
+                <ScalarProperty Name="ROWNUM" ColumnName="ROWNUM" />
+                <ScalarProperty Name="Billno" ColumnName="Billno" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="orderdate" ColumnName="orderdate" />
+                <ScalarProperty Name="Advance" ColumnName="Advance" />
+                <ScalarProperty Name="Payment" ColumnName="Payment" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Adate" ColumnName="Adate" />
+                <ScalarProperty Name="Pmode" ColumnName="Pmode" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Copies" ColumnName="Copies" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="M_Status" ColumnName="M_Status" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="PDate" ColumnName="PDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SearchPartWithBalance" FunctionName="billingdbModel.Store.SearchPartWithBalance">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="billingdbModel.SearchPartWithBalance_Result">
+                <ScalarProperty Name="TotalCount" ColumnName="TotalCount" />
+                <ScalarProperty Name="ROWNUM" ColumnName="ROWNUM" />
+                <ScalarProperty Name="Billno" ColumnName="Billno" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="orderdate" ColumnName="orderdate" />
+                <ScalarProperty Name="Advance" ColumnName="Advance" />
+                <ScalarProperty Name="Payment" ColumnName="Payment" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Adate" ColumnName="Adate" />
+                <ScalarProperty Name="Pmode" ColumnName="Pmode" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Copies" ColumnName="Copies" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="M_Status" ColumnName="M_Status" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="PDate" ColumnName="PDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

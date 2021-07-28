@@ -1,0 +1,161 @@
+﻿<Page x:Class="CiniLithoApp.PurchaseList"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+         xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:auto="clr-namespace:CiniLithoApp.AutoComplete"
+      xmlns:local="clr-namespace:CiniLithoApp"
+      mc:Ignorable="d" Title="PurchaseList">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0"  HorizontalAlignment="Right" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <auto:AutoCompleteTextBox  x:Name="txt_search" Grid.Row="0" Grid.Column="0"  Margin="0,0,0,0"  Height="35"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" KeyDown="txt_search_KeyDown" Threshold="2" Focusable="True" material:HintAssist.Hint="SellerName" />
+            <DatePicker x:Name="fromdate" Grid.Row="0" Grid.Column="1" FontSize="20" Margin="2" SelectedDateChanged="fromdate_SelectedDateChanged" Background="White" material:HintAssist.Hint="From Date" ></DatePicker>
+            <DatePicker x:Name="todate" Grid.Row="0" Grid.Column="2" FontSize="20" Margin="2" SelectedDateChanged="todate_SelectedDateChanged"  Background="White" material:HintAssist.Hint="To Date" ></DatePicker>
+            <Button x:Name="btn_refresh" Content="Refresh" Grid.Column="3" Margin="2" Click="btn_refresh_Click" Height="40"></Button>
+            <Button x:Name="btn_print" Content="Print" Grid.Column="4" Margin="2" Click="btn_print_Click" Height="40" Visibility="Collapsed"></Button>
+        </Grid>
+        <ScrollViewer x:Name="SearchGridScroll" Grid.Column="0" Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"  VerticalAlignment="Stretch" PreviewMouseWheel="SearchGridScroll_PreviewMouseWheel"  >
+            <DataGrid VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.IsContainerVirtualizable="True" VirtualizingPanel.VirtualizationMode="Recycling" x:Name="Searchgrid"  VerticalAlignment="Stretch" Grid.Row="1" AlternatingRowBackground="{DynamicResource AlternateColor}" AutoGenerateColumns="False"  EnableRowVirtualization="True" RowDetailsVisibilityMode="VisibleWhenSelected" GridLinesVisibility="None" Background="{DynamicResource DefaultWhite}" IsReadOnly="True" MouseDoubleClick="Searchgrid_MouseDoubleClick" >
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
+                        <Setter Property="Foreground" Value="{StaticResource PrimaryFont}" />
+                        <Setter Property="HorizontalContentAlignment" Value="Left" />
+                        <Setter Property="Height" Value="35"/>
+                        <Setter Property="FontSize" Value="14"></Setter>
+                        <Setter Property="FontWeight" Value="Normal"/>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+                
+                <DataGrid.RowHeaderStyle>
+                    <Style TargetType="{x:Type DataGridRowHeader}">
+                        <Setter Property="Width" Value="0"></Setter>
+                        <Setter Property="FontWeight"  Value="Bold"></Setter>
+                    </Style>
+                </DataGrid.RowHeaderStyle>
+                <DataGrid.RowStyle>
+                    <Style   TargetType="{x:Type DataGridRow}">
+                        <Setter   Property="FontSize" Value="12"/>
+                    </Style>
+
+                </DataGrid.RowStyle>
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="Product_codeColumn" Binding="{Binding sno}"  Width="50" CanUserResize="False">
+
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="SNO"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn x:Name="Product_artidColumn" Binding="{Binding Purchase_date,StringFormat=dd-MM-yyyy}"  Width="100">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Purchase Date"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn x:Name="Product_nameColumn" Binding="{Binding Company_Name}" Width="150">
+
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Company Name"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn x:Name="Product_lnameColumn" Binding="{Binding Product_Detail}" Width="200">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Product Detail"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn x:Name="Product_typeColumn" Binding="{Binding HNS_No}"  Width="100">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="HNS No"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn x:Name="Product_brandColumn" Binding="{Binding Bill_no}"  Width="100">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Bill No"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn x:Name="Product_stockColumn" Binding="{Binding amount}"  Width="100">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Amount"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn x:Name="Product_unitColumn" Binding="{Binding cgst}"  Width="100">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="CGST"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn x:Name="Product_advanceColumn" Binding="{Binding sgst}"  Width="100">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="SGST"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn x:Name="Product_modeColumn" Binding="{Binding PaymentMode}"  Width="100">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Mode"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn x:Name="Product_pdateColumn" Binding="{Binding Paymentdate,StringFormat=dd-MM-yyyy}"  Width="100">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="PaymentDate"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn x:Name="Product_paymentColumn" Binding="{Binding Total_Amount}"  Width="100">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Total Amount"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTemplateColumn Width="65" >
+                        <DataGridTemplateColumn.Header>
+                            <TextBlock Text="Delete"/>
+                        </DataGridTemplateColumn.Header>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <!--PreviewMouseLeftButtonUp="GridDelet_Click"-->
+                                <Button x:Name="defbtn" Width="26" Style="{DynamicResource ImageButtonStyle}" Click="defbtn_Click">
+                                    <Path  Data="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z"
+                                      StrokeThickness="60"  Stretch="Uniform" Fill="#FF3D90E2" Width="20" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" Height="20">
+                                    </Path>
+                                </Button>
+
+
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+        <Grid Grid.Row="2"  HorizontalAlignment="Right" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Total" Grid.Row="0" Grid.Column="0" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center" ></TextBlock>
+            <TextBlock x:Name="amt" Text="000" Grid.Row="0" Grid.Column="1" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center"></TextBlock>
+            <TextBlock x:Name="cgsttax" Text="000" Grid.Row="0" Grid.Column="2" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center"></TextBlock>
+            <TextBlock x:Name="sgsttax" Text="000" Grid.Row="0" Grid.Column="3" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center"></TextBlock>
+            <TextBlock x:Name="totalamt" Text="000" Grid.Row="0" Grid.Column="4" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center"></TextBlock>
+        </Grid>
+    </Grid>
+</Page>

@@ -1,0 +1,62 @@
+﻿<Window x:Class="CiniLithoApp.Payment"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CiniLithoApp"
+        mc:Ignorable="d"
+        Title="Payment" Height="570" Width="380" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Margin="2">
+    <Grid Margin="5,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Order No" VerticalAlignment="Center" FontSize="18" FontWeight="SemiBold" ></TextBlock>
+        <TextBlock x:Name="txb_acbal" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="Account Balance : 000" VerticalAlignment="Center" FontSize="18" FontWeight="SemiBold" ></TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Name" VerticalAlignment="Center" FontSize="18" FontWeight="SemiBold" ></TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Total" VerticalAlignment="Center" FontSize="18" FontWeight="SemiBold" ></TextBlock>
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="Paid" VerticalAlignment="Center" FontSize="18" FontWeight="SemiBold" ></TextBlock>
+        <TextBlock Grid.Row="5" Grid.Column="0" Text="Balance" VerticalAlignment="Center" FontSize="18" FontWeight="SemiBold" ></TextBlock>
+        <TextBlock Grid.Row="6" Grid.Column="0" Text="Payment" VerticalAlignment="Center" FontSize="18" FontWeight="SemiBold" ></TextBlock>
+        <TextBlock Grid.Row="7" Grid.Column="0" Text="Bank Ref" VerticalAlignment="Center" FontSize="18" FontWeight="SemiBold" ></TextBlock>
+        <Grid Grid.Row="9" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <RadioButton x:Name="RBT_Cash" Content="CASH" Grid.Column="0" VerticalContentAlignment="Center" FontWeight="SemiBold" Checked="RBT_Cash_Checked" FontSize="18"></RadioButton>
+            <RadioButton x:Name="RBT_SBI" Content="SBI" Grid.Column="1" VerticalContentAlignment="Center" FontWeight="SemiBold" Checked="RBT_SBI_Checked" FontSize="18"></RadioButton>
+            <RadioButton x:Name="RBT_TMB" Content="TMB" Grid.Column="2" VerticalContentAlignment="Center" FontWeight="SemiBold" Checked="RBT_TMB_Checked" FontSize="18"></RadioButton>
+        </Grid>
+        <Grid Grid.Row="10" Grid.ColumnSpan="2" Height="50">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="BTN_SAVE" Grid.Column="0" Content="Save" Margin="2,0" Background="Green" Click="BTN_SAVE_Click" FontWeight="SemiBold" Height="50" ></Button>
+            <Button x:Name="BTN_CANCEL" Grid.Column="1" Content="Cancel" Margin="2,0" Background="Red" Click="BTN_CANCEL_Click" FontWeight="SemiBold" Height="50" ></Button>
+        </Grid>
+        <TextBox Grid.Row="0"  x:Name="txt_orderno" Grid.Column="1" Text="" VerticalContentAlignment="Center" FontSize="20" IsReadOnly="False" Height="45" PreviewKeyDown="txt_orderno_PreviewKeyDown" CharacterCasing="Upper"></TextBox>
+        <TextBox Grid.Row="2"  x:Name="txt_name" Grid.Column="1" Text="" VerticalContentAlignment="Center" FontSize="20" IsReadOnly="True" Height="45"></TextBox>
+        <TextBox Grid.Row="3"  x:Name="txt_total" Grid.Column="1" Text="000" VerticalContentAlignment="Center" FontSize="20" IsReadOnly="True" Height="45" ></TextBox>
+        <TextBox Grid.Row="4"  x:Name="txt_paid" Grid.Column="1"  Text="000" VerticalContentAlignment="Center" FontSize="20" IsReadOnly="True" Height="45"></TextBox>
+        <TextBox Grid.Row="5"  x:Name="txt_balance" Grid.Column="1" Text="000" VerticalContentAlignment="Center" FontSize="20" IsReadOnly="True" Height="45"></TextBox>
+        <TextBox Grid.Row="6"  x:Name="txt_payment" Grid.Column="1"  Text="000" VerticalContentAlignment="Center" FontSize="20" IsReadOnly="False" Height="45" PreviewTextInput="allowinteger"  PreviewKeyDown="txt_payment_PreviewKeyDown" KeyUp="txt_payment_KeyUp" TextChanged="txt_payment_TextChanged"></TextBox>
+        <TextBox Grid.Row="8"  x:Name="txt_bank" Grid.Column="0" Grid.ColumnSpan="2"  Text="" VerticalContentAlignment="Top" FontSize="20" IsReadOnly="False" TextWrapping="Wrap" ></TextBox>
+
+    </Grid>
+</Window>
